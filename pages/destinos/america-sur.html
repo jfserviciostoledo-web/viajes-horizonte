@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>América del Sur – Viajes Horizonte</title>
+<link href="../../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar scrolled">
+<a class="navbar__logo" href="../../index.html">
+<div class="navbar__logo-icon">✦</div>
+      Viajes <span>Horizonte</span>
+</a>
+<button aria-label="Menú" class="navbar__toggle">
+<span></span><span></span><span></span>
+</button>
+<ul class="navbar__menu">
+<li><a href="../../index.html">Inicio</a></li>
+<li><a class="active" href="../destinos.html">Destinos</a></li>
+<li><a href="../ofertas.html">Ofertas</a></li>
+<li><a class="navbar__cta" href="../contacto.html">Contactar</a></li>
+</ul>
+</nav>
+<header class="page-header" style="margin-top:var(--nav-h)">
+<div class="page-header__bg" style="background-image:url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1800&amp;q=80')"></div>
+<div class="page-header__overlay"></div>
+<div class="page-header__content anim-fade-up">
+<span class="page-header__eyebrow">Naturaleza y cultura en estado puro</span>
+<h1 class="page-header__title"><em>América del Sur</em></h1>
+</div>
+</header>
+<section class="coming-soon section">
+<div class="coming-soon__icon">✦</div>
+<h2 class="section__title" style="margin-bottom:16px;">Contenido en preparación</h2>
+<p class="coming-soon__text">
+      Estamos trabajando para ofrecerte la mejor selección de viajes a América del Sur.
+      Próximamente encontrarás aquí destinos, itinerarios y paquetes completos.
+    </p>
+<a class="btn btn--outline" href="../contacto.html">Consultar disponibilidad <span class="arrow">→</span></a>
+</section>
+<footer class="footer">
+<div class="footer__grid">
+<div class="footer__brand">
+<div class="footer__brand-name">Viajes <span>Horizonte</span></div>
+<p class="footer__tagline">Agencia de viajes especializada en escapadas, viajes europeos y experiencias personalizadas. Desde 2018 haciendo realidad sueños de viaje.</p>
+<div class="footer__social">
+<a aria-label="Instagram" href="#">📷</a>
+<a aria-label="Facebook" href="#">f</a>
+<a aria-label="WhatsApp" href="#">✆</a>
+</div>
+</div>
+<div>
+<div class="footer__col-title">Navegación</div>
+<ul class="footer__links">
+<li><a href="../../index.html">Inicio</a></li>
+<li><a href="../destinos.html">Destinos</a></li>
+<li><a href="../ofertas.html">Ofertas</a></li>
+<li><a href="../contacto.html">Contacto</a></li>
+</ul>
+</div>
+<div>
+<div class="footer__col-title">Destinos</div>
+<ul class="footer__links">
+<li><a href="europa.html">Europa</a></li>
+<li><a href="america-norte.html">América del Norte</a></li>
+<li><a href="america-sur.html">América del Sur</a></li>
+<li><a href="oriente-medio.html">Oriente Medio</a></li>
+<li><a href="asia.html">Asia</a></li>
+<li><a href="oceania.html">Oceanía</a></li>
+<li><a href="mar-islas.html">Mar e Islas</a></li>
+</ul>
+</div>
+<div>
+<div class="footer__col-title">Contacto</div>
+<ul class="footer__links">
+<li><a href="tel:+34900000000">+34 900 000 000</a></li>
+<li><a href="mailto:info@viajeshorizonte.es">info@viajeshorizonte.es</a></li>
+<li><a href="../contacto.html">Formulario de contacto</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom">
+<span>© 2025 Viajes Horizonte · Todos los derechos reservados</span>
+<span>Diseño web · Aviso legal · Política de privacidad</span>
+</div>
+</footer>
+<script>/* ============================================
+   MAIN JS – Comportamiento global
+   ============================================ */
+
+// ── NAVBAR SCROLL ──
+const navbar = document.querySelector('.navbar');
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Active link
+  const currentPath = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.navbar__menu a').forEach(link => {
+    const href = link.getAttribute('href').split('/').pop();
+    if (href === currentPath) link.classList.add('active');
+  });
+}
+
+// ── HAMBURGER ──
+const toggle = document.querySelector('.navbar__toggle');
+const menu   = document.querySelector('.navbar__menu');
+if (toggle && menu) {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Close on link click
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ── SCROLL ANIMATIONS ──
+const observeEls = document.querySelectorAll('[data-anim]');
+if (observeEls.length) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  observeEls.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.7s ease ${i * 0.1}s, transform 0.7s ease ${i * 0.1}s`;
+    io.observe(el);
+  });
+}
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 2000;
+  const start = performance.now();
+
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const value = target * ease;
+    el.textContent = (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+
+  requestAnimationFrame(update);
+}
+
+const counterEls = document.querySelectorAll('[data-target]');
+if (counterEls.length) {
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counterEls.forEach(el => counterObs.observe(el));
+}
+</script>
+</body>
+</html>
