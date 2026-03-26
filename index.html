@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Viajes Horizonte – Escapadas y Experiencias Únicas</title>
+<meta content="Agencia de viajes especializada en escapadas, viajes europeos y experiencias personalizadas desde 2018. Descubre el mundo con Viajes Horizonte." name="description"/>
+
+
+<style>/* ============================================
+   VIAJES HORIZONTE – Design System
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --azul-profundo: #0a1628;
+  --azul-marino:   #112240;
+  --azul-medio:    #1b3a6b;
+  --dorado:        #c9a84c;
+  --dorado-claro:  #e8c96a;
+  --crema:         #f5f0e8;
+  --blanco:        #ffffff;
+  --gris-suave:    #8a9bb5;
+  --texto-oscuro:  #1a2540;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Outfit', sans-serif;
+
+  --nav-h: 80px;
+  --radius: 4px;
+  --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--azul-profundo);
+  color: var(--crema);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a  { color: inherit; text-decoration: none; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--azul-profundo); }
+::-webkit-scrollbar-thumb { background: var(--dorado); border-radius: 3px; }
+
+/* ============================================
+   NAVEGACIÓN
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding: 0 6%;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(10, 22, 40, 0.97);
+  box-shadow: 0 1px 0 rgba(201,168,76,0.25);
+  backdrop-filter: blur(12px);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--blanco);
+}
+
+.navbar__logo-icon {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--dorado);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--dorado);
+}
+
+.navbar__logo span { color: var(--dorado); }
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  margin-left: auto;
+  align-items: center;
+}
+
+.navbar__menu a {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(245,240,232,0.8);
+  transition: color var(--transition);
+  position: relative;
+}
+
+.navbar__menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--dorado);
+  transition: width var(--transition);
+}
+
+.navbar__menu a:hover,
+.navbar__menu a.active { color: var(--dorado); }
+.navbar__menu a:hover::after,
+.navbar__menu a.active::after { width: 100%; }
+
+.navbar__cta {
+  background: var(--dorado) !important;
+  color: var(--azul-profundo) !important;
+  padding: 9px 22px;
+  border-radius: var(--radius);
+  font-weight: 600 !important;
+  transition: background var(--transition), transform var(--transition) !important;
+}
+.navbar__cta::after { display: none !important; }
+.navbar__cta:hover { background: var(--dorado-claro) !important; transform: translateY(-1px); }
+
+/* Hamburger */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--crema);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.navbar__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar__toggle.open span:nth-child(2) { opacity: 0; }
+.navbar__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================
+   PAGE HEADER (páginas interiores)
+   ============================================ */
+.page-header {
+  position: relative;
+  height: 55vh;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 6% 60px;
+  overflow: hidden;
+  background: var(--azul-marino);
+}
+
+.page-header__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.page-header:hover .page-header__bg { transform: scale(1.0); }
+
+.page-header__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--azul-profundo) 10%, transparent 70%);
+}
+
+.page-header__content { position: relative; z-index: 2; }
+
+.page-header__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.page-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--blanco);
+}
+
+.page-header__title em {
+  font-style: italic;
+  color: var(--dorado-claro);
+}
+
+/* ============================================
+   SECCIONES GENÉRICAS
+   ============================================ */
+.section {
+  padding: 100px 6%;
+}
+
+.section--light {
+  background: var(--crema);
+  color: var(--texto-oscuro);
+}
+
+.section--mid {
+  background: var(--azul-marino);
+}
+
+.section__label {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.section__title em { font-style: italic; color: var(--dorado-claro); }
+
+.section--light .section__title em { color: var(--azul-medio); }
+
+.section__intro {
+  font-size: 1.05rem;
+  color: var(--gris-suave);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+.section--light .section__intro { color: #5a6a85; }
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.btn--primary {
+  background: var(--dorado);
+  color: var(--azul-profundo);
+}
+.btn--primary:hover {
+  background: var(--dorado-claro);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201,168,76,0.3);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  color: var(--dorado);
+}
+.btn--outline:hover {
+  border-color: var(--dorado);
+  background: rgba(201,168,76,0.08);
+  transform: translateY(-2px);
+}
+
+.btn--outline-dark {
+  background: transparent;
+  border: 1.5px solid rgba(10,22,40,0.35);
+  color: var(--azul-profundo);
+}
+.btn--outline-dark:hover {
+  border-color: var(--azul-medio);
+  background: rgba(10,22,40,0.06);
+  transform: translateY(-2px);
+}
+
+.btn .arrow {
+  font-size: 1.1em;
+  transition: transform var(--transition);
+}
+.btn:hover .arrow { transform: translateX(5px); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: #060e1c;
+  padding: 70px 6% 30px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+.footer__brand-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--blanco);
+  margin-bottom: 14px;
+}
+
+.footer__brand-name span { color: var(--dorado); }
+
+.footer__tagline {
+  font-size: 0.9rem;
+  color: var(--gris-suave);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.footer__social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer__social a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--gris-suave);
+  transition: var(--transition);
+}
+
+.footer__social a:hover {
+  border-color: var(--dorado);
+  color: var(--dorado);
+  transform: translateY(-2px);
+}
+
+.footer__col-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 0.88rem;
+  color: var(--gris-suave);
+  transition: color var(--transition);
+}
+
+.footer__links a:hover { color: var(--crema); }
+
+.footer__bottom {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(138,155,181,0.6);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.text-gold   { color: var(--dorado); }
+.text-center { text-align: center; }
+.mt-sm { margin-top: 16px; }
+.mt-md { margin-top: 32px; }
+.mt-lg { margin-top: 56px; }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.anim-fade-up  { animation: fadeInUp 0.8s ease both; }
+.anim-fade     { animation: fadeIn 0.8s ease both; }
+.delay-1       { animation-delay: 0.15s; }
+.delay-2       { animation-delay: 0.3s; }
+.delay-3       { animation-delay: 0.45s; }
+.delay-4       { animation-delay: 0.6s; }
+.delay-5       { animation-delay: 0.75s; }
+
+/* ============================================
+   COMING SOON BLOCK (Ofertas / Destino vacío)
+   ============================================ */
+.coming-soon {
+  padding: 80px 6%;
+  text-align: center;
+}
+
+.coming-soon__icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  opacity: 0.4;
+}
+
+.coming-soon__text {
+  font-size: 1rem;
+  color: var(--gris-suave);
+  max-width: 400px;
+  margin: 0 auto 32px;
+  line-height: 1.8;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  :root { --nav-h: 68px; }
+
+  .navbar__menu {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    background: rgba(10,22,40,0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    padding: 32px 6%;
+    gap: 1.5rem;
+    transform: translateY(-110%);
+    transition: transform var(--transition);
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .navbar__menu.open { transform: translateY(0); }
+  .navbar__toggle { display: flex; }
+
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+
+/* ============================================
+   INICIO – Estilos específicos
+   ============================================ */
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1800&q=80') center/cover no-repeat;
+  transform: scale(1.06);
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.02); }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(10,22,40,0.92) 0%,
+    rgba(10,22,40,0.55) 55%,
+    rgba(10,22,40,0.3) 100%
+  );
+}
+
+.hero__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--dorado);
+  opacity: 0;
+  animation: particle 6s ease-in-out infinite;
+}
+
+@keyframes particle {
+  0%   { opacity: 0; transform: translateY(0); }
+  20%  { opacity: 0.7; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-120px); }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 6%;
+  max-width: 800px;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  font-weight: 500;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero__eyebrow::before,
+.hero__eyebrow::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--dorado);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--blanco);
+  animation: fadeInUp 0.8s ease 0.15s both;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--dorado-claro);
+  display: block;
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  color: rgba(245,240,232,0.75);
+  margin-top: 24px;
+  max-width: 480px;
+  line-height: 1.8;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  animation: fadeInUp 0.8s ease 0.45s both;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  animation: fadeIn 1s ease 1s both;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--dorado), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: scaleY(1); transform-origin: top; }
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--azul-marino);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding: 36px 6%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.stats-bar__item {}
+
+.stats-bar__number {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--dorado);
+  line-height: 1;
+}
+
+.stats-bar__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-suave);
+  margin-top: 6px;
+}
+
+/* ── QUIÉNES SOMOS ── */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 6%;
+  background: var(--azul-profundo);
+}
+
+.about__visual {
+  position: relative;
+}
+
+.about__img-main {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.about__img-accent {
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 2px;
+  bottom: -30px;
+  right: -30px;
+  border: 6px solid var(--azul-profundo);
+}
+
+.about__badge {
+  position: absolute;
+  top: 30px;
+  left: -20px;
+  background: var(--dorado);
+  color: var(--azul-profundo);
+  padding: 18px 22px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.about__badge-year {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.about__badge-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.about__values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.about__value {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+}
+
+.about__value:hover { border-color: rgba(201,168,76,0.4); }
+
+.about__value-icon { font-size: 1.3rem; }
+
+.about__value-text {
+  font-size: 0.88rem;
+  color: var(--gris-suave);
+  line-height: 1.5;
+}
+
+.about__value-text strong {
+  display: block;
+  color: var(--crema);
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+/* ── DESTINOS HIGHLIGHT ── */
+.destinations-preview {
+  padding: 100px 6%;
+  background: var(--crema);
+  color: var(--texto-oscuro);
+}
+
+.destinations-preview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 16px;
+}
+
+.dest-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.dest-card:first-child { grid-row: 1 / 3; }
+
+.dest-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.dest-card:hover .dest-card__img { transform: scale(1.08); }
+
+.dest-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.1) 60%);
+  transition: background var(--transition);
+}
+
+.dest-card:hover .dest-card__overlay {
+  background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.2) 60%);
+}
+
+.dest-card__content {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+  transform: translateY(8px);
+  transition: transform var(--transition);
+}
+
+.dest-card:hover .dest-card__content { transform: translateY(0); }
+
+.dest-card__region {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  font-weight: 600;
+}
+
+.dest-card__name {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: var(--blanco);
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.dest-card:first-child .dest-card__name { font-size: 2.4rem; }
+
+.dest-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  opacity: 0;
+  transition: opacity var(--transition);
+  margin-top: 8px;
+}
+
+.dest-card:hover .dest-card__action { opacity: 1; }
+
+/* ── SERVICIOS ── */
+.services {
+  padding: 100px 6%;
+  background: var(--azul-profundo);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.service-item {
+  padding: 40px 36px;
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: background var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--dorado);
+  transition: height 0.5s ease;
+}
+
+.service-item:hover { background: rgba(201,168,76,0.04); border-color: rgba(201,168,76,0.25); }
+.service-item:hover::before { height: 100%; }
+
+.service-item__icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.service-item__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--blanco);
+  margin-bottom: 12px;
+}
+
+.service-item__desc {
+  font-size: 0.88rem;
+  color: var(--gris-suave);
+  line-height: 1.8;
+}
+
+/* ── TESTIMONIOS ── */
+.testimonials {
+  padding: 100px 6%;
+  background: var(--azul-marino);
+  overflow: hidden;
+}
+
+.testimonials__track {
+  display: flex;
+  gap: 24px;
+  margin-top: 60px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.testimonials__track::-webkit-scrollbar { display: none; }
+
+.testimonial-card {
+  min-width: 360px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 2px;
+  padding: 36px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  transition: border-color var(--transition);
+}
+
+.testimonial-card:hover { border-color: rgba(201,168,76,0.35); }
+
+.testimonial-card__stars {
+  color: var(--dorado);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.testimonial-card__text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--crema);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonial-card__avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--azul-medio);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--dorado);
+  border: 1px solid rgba(201,168,76,0.3);
+}
+
+.testimonial-card__name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--blanco);
+}
+
+.testimonial-card__trip {
+  font-size: 0.75rem;
+  color: var(--gris-suave);
+  margin-top: 2px;
+}
+
+/* ── CTA FINAL ── */
+.cta-banner {
+  position: relative;
+  padding: 120px 6%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80') center/cover no-repeat;
+  opacity: 0.2;
+}
+
+.cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-medio) 100%);
+  opacity: 0.92;
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-banner__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--blanco);
+  margin-bottom: 20px;
+}
+
+.cta-banner__title em { font-style: italic; color: var(--dorado-claro); }
+
+.cta-banner__text {
+  font-size: 1rem;
+  color: var(--gris-suave);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE INICIO ── */
+@media (max-width: 1024px) {
+  .destinations-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .dest-card:first-child { grid-row: auto; }
+  .services__grid { grid-template-columns: 1fr 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .about__visual { order: -1; }
+  .about__img-accent { right: -15px; bottom: -15px; }
+}
+
+@media (max-width: 768px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .destinations-preview__header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .destinations-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .dest-card { height: 240px; }
+  .services__grid { grid-template-columns: 1fr; }
+  .about__values { grid-template-columns: 1fr; }
+  .testimonial-card { min-width: 290px; }
+}
+
+</style></head>
+<body>
+<!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+<nav class="navbar">
+<a class="navbar__logo" href="index.html">
+<div class="navbar__logo-icon">✦</div>
+      Viajes <span>Horizonte</span>
+</a>
+<button aria-expanded="false" aria-label="Menú" class="navbar__toggle">
+<span></span><span></span><span></span>
+</button>
+<ul class="navbar__menu">
+<li><a class="active" href="index.html">Inicio</a></li>
+<li><a href="pages/destinos.html">Destinos</a></li>
+<li><a href="pages/ofertas.html">Ofertas</a></li>
+<li><a class="navbar__cta" href="pages/contacto.html">Contactar</a></li>
+</ul>
+</nav>
+<!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+<section class="hero">
+<div class="hero__bg"></div>
+<div class="hero__overlay"></div>
+<!-- Partículas decorativas -->
+<div class="hero__particles">
+<div class="hero__particle" style="left:15%;top:40%;animation-delay:0s;animation-duration:7s"></div>
+<div class="hero__particle" style="left:30%;top:60%;animation-delay:1.5s;animation-duration:9s"></div>
+<div class="hero__particle" style="left:55%;top:50%;animation-delay:3s;animation-duration:6s"></div>
+<div class="hero__particle" style="left:70%;top:70%;animation-delay:0.5s;animation-duration:8s"></div>
+<div class="hero__particle" style="left:85%;top:35%;animation-delay:2s;animation-duration:7s"></div>
+</div>
+<div class="hero__content">
+<div class="hero__eyebrow">Agencia de viajes · Desde 2018</div>
+<h1 class="hero__title">
+        El mundo,<br/>
+<em>a tu medida.</em>
+</h1>
+<p class="hero__subtitle">
+        Escapadas, viajes europeos y experiencias únicas diseñadas para ti.
+        Descubre destinos que te emocionan con el trato cercano que mereces.
+      </p>
+<div class="hero__actions">
+<a class="btn btn--primary" href="pages/destinos.html">
+          Explorar destinos <span class="arrow">→</span>
+</a>
+<a class="btn btn--outline" href="pages/contacto.html">
+          Hablar con un experto
+        </a>
+</div>
+</div>
+<div class="hero__scroll">
+<div class="hero__scroll-line"></div>
+      Descubrir
+    </div>
+</section>
+<!-- ══════════════════════════════════════════
+       STATS BAR
+  ══════════════════════════════════════════ -->
+<div class="stats-bar">
+<div class="stats-bar__item">
+<div class="stats-bar__number" data-suffix="+" data-target="6">0+</div>
+<div class="stats-bar__label">Años de experiencia</div>
+</div>
+<div class="stats-bar__item">
+<div class="stats-bar__number" data-suffix="+" data-target="1200">0+</div>
+<div class="stats-bar__label">Viajeros satisfechos</div>
+</div>
+<div class="stats-bar__item">
+<div class="stats-bar__number" data-suffix="" data-target="7">0</div>
+<div class="stats-bar__label">Zonas del mundo</div>
+</div>
+<div class="stats-bar__item">
+<div class="stats-bar__number" data-suffix="★" data-target="4.9">0★</div>
+<div class="stats-bar__label">Valoración media</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════════
+       QUIÉNES SOMOS
+  ══════════════════════════════════════════ -->
+<section class="about">
+<div class="about__visual" data-anim="">
+<img alt="Viajeros disfrutando" class="about__img-main" loading="lazy" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&amp;q=80"/>
+<img alt="Venecia, Europa" class="about__img-accent" loading="lazy" src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&amp;q=80"/>
+<div class="about__badge">
+<div class="about__badge-year">2018</div>
+<div class="about__badge-label">Fundación</div>
+</div>
+</div>
+<div class="about__text" data-anim="">
+<span class="section__label">Quiénes somos</span>
+<h2 class="section__title">
+        Más que una agencia,<br/>
+<em>tu compañero de viaje</em>
+</h2>
+<p class="section__intro">
+        Viajes Horizonte es una agencia especializada en la organización de escapadas,
+        viajes europeos y experiencias personalizadas. Desde 2018, trabajamos para que
+        cada cliente viva viajes únicos adaptados a sus gustos y necesidades.
+      </p>
+<p class="section__intro" style="margin-top:16px;">
+        Nuestro equipo de profesionales del turismo te asesora en destinos,
+        alojamientos y actividades, apostando siempre por el trato cercano y
+        experiencias memorables que van más allá del turismo tradicional.
+      </p>
+<div class="about__values">
+<div class="about__value">
+<div class="about__value-icon">🤝</div>
+<div class="about__value-text">
+<strong>Cercanía</strong>
+            Atención personalizada en cada paso de tu viaje.
+          </div>
+</div>
+<div class="about__value">
+<div class="about__value-icon">⭐</div>
+<div class="about__value-text">
+<strong>Calidad</strong>
+            Seleccionamos cada servicio con máximo rigor.
+          </div>
+</div>
+<div class="about__value">
+<div class="about__value-icon">🎯</div>
+<div class="about__value-text">
+<strong>Personalización</strong>
+            Cada viaje está diseñado para ti.
+          </div>
+</div>
+<div class="about__value">
+<div class="about__value-icon">✈️</div>
+<div class="about__value-text">
+<strong>Pasión</strong>
+            El viaje es nuestra forma de vida.
+          </div>
+</div>
+</div>
+<a class="btn btn--outline" href="pages/contacto.html" style="margin-top:40px;">
+        Contactar con nosotros <span class="arrow">→</span>
+</a>
+</div>
+</section>
+<!-- ══════════════════════════════════════════
+       DESTINOS PREVIEW
+  ══════════════════════════════════════════ -->
+<section class="destinations-preview">
+<div class="destinations-preview__header">
+<div>
+<span class="section__label">Nuestros destinos</span>
+<h2 class="section__title" style="color:var(--texto-oscuro)">
+          El mundo entero,<br/>
+<em style="color:var(--azul-medio)">esperándote</em>
+</h2>
+</div>
+<a class="btn btn--outline-dark" href="pages/destinos.html">
+        Ver todos <span class="arrow">→</span>
+</a>
+</div>
+<div class="destinations-grid">
+<a class="dest-card" href="pages/destinos/europa.html">
+<img alt="Europa" class="dest-card__img" loading="lazy" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1000&amp;q=80"/>
+<div class="dest-card__overlay"></div>
+<div class="dest-card__content">
+<div class="dest-card__region">Nuestro favorito</div>
+<div class="dest-card__name">Europa</div>
+<div class="dest-card__action">Explorar <span>→</span></div>
+</div>
+</a>
+<a class="dest-card" href="pages/destinos/america-norte.html">
+<img alt="América del Norte" class="dest-card__img" loading="lazy" src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&amp;q=80"/>
+<div class="dest-card__overlay"></div>
+<div class="dest-card__content">
+<div class="dest-card__region">Continente</div>
+<div class="dest-card__name">América del Norte</div>
+<div class="dest-card__action">Explorar <span>→</span></div>
+</div>
+</a>
+<a class="dest-card" href="pages/destinos/asia.html">
+<img alt="Asia" class="dest-card__img" loading="lazy" src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&amp;q=80"/>
+<div class="dest-card__overlay"></div>
+<div class="dest-card__content">
+<div class="dest-card__region">Lejano oriente</div>
+<div class="dest-card__name">Asia</div>
+<div class="dest-card__action">Explorar <span>→</span></div>
+</div>
+</a>
+<a class="dest-card" href="pages/destinos/mar-islas.html">
+<img alt="Mar e Islas" class="dest-card__img" loading="lazy" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&amp;q=80"/>
+<div class="dest-card__overlay"></div>
+<div class="dest-card__content">
+<div class="dest-card__region">Paraísos</div>
+<div class="dest-card__name">Mar e Islas</div>
+<div class="dest-card__action">Explorar <span>→</span></div>
+</div>
+</a>
+</div>
+</section>
+<!-- ══════════════════════════════════════════
+       SERVICIOS
+  ══════════════════════════════════════════ -->
+<section class="services">
+<div style="max-width:560px">
+<span class="section__label">Lo que hacemos</span>
+<h2 class="section__title">
+        Un servicio completo<br/>
+<em>para cada viajero</em>
+</h2>
+</div>
+<div class="services__grid">
+<div class="service-item" data-anim="">
+<div class="service-item__icon">🗺️</div>
+<h3 class="service-item__title">Viajes personalizados</h3>
+<p class="service-item__desc">Diseñamos tu itinerario a medida, eligiendo cada detalle según tus preferencias, ritmo y presupuesto.</p>
+</div>
+<div class="service-item" data-anim="">
+<div class="service-item__icon">🌅</div>
+<h3 class="service-item__title">Escapadas de fin de semana</h3>
+<p class="service-item__desc">Desconecta en escapadas cuidadosamente seleccionadas. Perfectas para aprovechar cada fin de semana.</p>
+</div>
+<div class="service-item" data-anim="">
+<div class="service-item__icon">🏰</div>
+<h3 class="service-item__title">Viajes por Europa</h3>
+<p class="service-item__desc">Nuestra especialidad. Circuitos y rutas únicas por los rincones más fascinantes del viejo continente.</p>
+</div>
+<div class="service-item" data-anim="">
+<div class="service-item__icon">🏨</div>
+<h3 class="service-item__title">Reserva de hoteles</h3>
+<p class="service-item__desc">Seleccionamos alojamientos que se adaptan perfectamente a tu estilo de viaje y a tu presupuesto.</p>
+</div>
+<div class="service-item" data-anim="">
+<div class="service-item__icon">🎭</div>
+<h3 class="service-item__title">Experiencias únicas</h3>
+<p class="service-item__desc">Visitas exclusivas, gastronomía local, actividades de aventura… mucho más que el turismo clásico.</p>
+</div>
+<div class="service-item" data-anim="">
+<div class="service-item__icon">💬</div>
+<h3 class="service-item__title">Asesoramiento experto</h3>
+<p class="service-item__desc">Nuestros asesores te orientan en cada decisión, desde el destino hasta el seguro de viaje.</p>
+</div>
+</div>
+</section>
+<!-- ══════════════════════════════════════════
+       TESTIMONIOS
+  ══════════════════════════════════════════ -->
+<section class="testimonials">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+<div>
+<span class="section__label">Opiniones</span>
+<h2 class="section__title">
+          Lo que dicen<br/>
+<em>nuestros viajeros</em>
+</h2>
+</div>
+<a class="btn btn--outline" href="pages/contacto.html">Reserva tu viaje <span class="arrow">→</span></a>
+</div>
+<div class="testimonials__track">
+<div class="testimonial-card">
+<div class="testimonial-card__stars">★★★★★</div>
+<p class="testimonial-card__text">"Organizaron nuestro viaje a Italia con un mimo increíble. Cada detalle estaba pensado. Sin duda repetiremos con Viajes Horizonte."</p>
+<div class="testimonial-card__author">
+<div class="testimonial-card__avatar">M</div>
+<div>
+<div class="testimonial-card__name">Marta y Carlos</div>
+<div class="testimonial-card__trip">Luna de miel · Toscana, Italia</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-card__stars">★★★★★</div>
+<p class="testimonial-card__text">"Nunca había viajado a Asia y tenía muchas dudas. El equipo nos asesoró de maravilla. Japón fue la experiencia de nuestra vida."</p>
+<div class="testimonial-card__author">
+<div class="testimonial-card__avatar">L</div>
+<div>
+<div class="testimonial-card__name">Laura Fernández</div>
+<div class="testimonial-card__trip">Viaje en grupo · Japón</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-card__stars">★★★★★</div>
+<p class="testimonial-card__text">"La escapada a Portugal fue perfecta. Hoteles encantadores, rutas bien pensadas y siempre disponibles para cualquier consulta."</p>
+<div class="testimonial-card__author">
+<div class="testimonial-card__avatar">J</div>
+<div>
+<div class="testimonial-card__name">Jorge Méndez</div>
+<div class="testimonial-card__trip">Escapada en pareja · Lisboa</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-card__stars">★★★★★</div>
+<p class="testimonial-card__text">"Viajamos en familia con niños pequeños y lo tuvieron todo en cuenta. Un servicio increíblemente cercano y profesional a la vez."</p>
+<div class="testimonial-card__author">
+<div class="testimonial-card__avatar">A</div>
+<div>
+<div class="testimonial-card__name">Ana y familia</div>
+<div class="testimonial-card__trip">Viaje familiar · Grecia</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════════ -->
+<section class="cta-banner">
+<div class="cta-banner__bg"></div>
+<div class="cta-banner__overlay"></div>
+<div class="cta-banner__content" data-anim="">
+<span class="section__label">¿Listo para partir?</span>
+<h2 class="cta-banner__title">
+        Tu próxima aventura<br/>
+<em>empieza aquí</em>
+</h2>
+<p class="cta-banner__text">
+        Cuéntanos tus sueños de viaje y nuestro equipo se encargará de hacerlos realidad.
+        Sin compromisos, con toda la ilusión del mundo.
+      </p>
+<div class="cta-banner__actions">
+<a class="btn btn--primary" href="pages/contacto.html">
+          Consulta gratuita <span class="arrow">→</span>
+</a>
+<a class="btn btn--outline" href="pages/destinos.html">
+          Ver destinos
+        </a>
+</div>
+</div>
+</section>
+<!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+<footer class="footer">
+<div class="footer__grid">
+<div class="footer__brand">
+<div class="footer__brand-name">Viajes <span>Horizonte</span></div>
+<p class="footer__tagline">
+          Agencia de viajes especializada en escapadas, viajes europeos y experiencias
+          personalizadas. Desde 2018 haciendo realidad sueños de viaje.
+        </p>
+<div class="footer__social">
+<a aria-label="Instagram" href="#">📷</a>
+<a aria-label="Facebook" href="#">f</a>
+<a aria-label="WhatsApp" href="#">✆</a>
+</div>
+</div>
+<div>
+<div class="footer__col-title">Navegación</div>
+<ul class="footer__links">
+<li><a href="index.html">Inicio</a></li>
+<li><a href="pages/destinos.html">Destinos</a></li>
+<li><a href="pages/ofertas.html">Ofertas</a></li>
+<li><a href="pages/contacto.html">Contacto</a></li>
+</ul>
+</div>
+<div>
+<div class="footer__col-title">Destinos</div>
+<ul class="footer__links">
+<li><a href="pages/destinos/europa.html">Europa</a></li>
+<li><a href="pages/destinos/america-norte.html">América del Norte</a></li>
+<li><a href="pages/destinos/america-sur.html">América del Sur</a></li>
+<li><a href="pages/destinos/oriente-medio.html">Oriente Medio</a></li>
+<li><a href="pages/destinos/asia.html">Asia</a></li>
+<li><a href="pages/destinos/oceania.html">Oceanía</a></li>
+<li><a href="pages/destinos/mar-islas.html">Mar e Islas</a></li>
+</ul>
+</div>
+<div>
+<div class="footer__col-title">Contacto</div>
+<ul class="footer__links">
+<li><a href="tel:+34900000000">+34 900 000 000</a></li>
+<li><a href="mailto:info@viajeshorizonte.es">info@viajeshorizonte.es</a></li>
+<li><a href="pages/contacto.html">Formulario de contacto</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom">
+<span>© 2025 Viajes Horizonte · Todos los derechos reservados</span>
+<span>Diseño web · Aviso legal · Política de privacidad</span>
+</div>
+</footer>
+<script>/* ============================================
+   MAIN JS – Comportamiento global
+   ============================================ */
+
+// ── NAVBAR SCROLL ──
+const navbar = document.querySelector('.navbar');
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Active link
+  const currentPath = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.navbar__menu a').forEach(link => {
+    const href = link.getAttribute('href').split('/').pop();
+    if (href === currentPath) link.classList.add('active');
+  });
+}
+
+// ── HAMBURGER ──
+const toggle = document.querySelector('.navbar__toggle');
+const menu   = document.querySelector('.navbar__menu');
+if (toggle && menu) {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Close on link click
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// ── SCROLL ANIMATIONS ──
+const observeEls = document.querySelectorAll('[data-anim]');
+if (observeEls.length) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  observeEls.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.7s ease ${i * 0.1}s, transform 0.7s ease ${i * 0.1}s`;
+    io.observe(el);
+  });
+}
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 2000;
+  const start = performance.now();
+
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const value = target * ease;
+    el.textContent = (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+
+  requestAnimationFrame(update);
+}
+
+const counterEls = document.querySelectorAll('[data-target]');
+if (counterEls.length) {
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counterEls.forEach(el => counterObs.observe(el));
+}
+</script>
+</body>
+</html>
