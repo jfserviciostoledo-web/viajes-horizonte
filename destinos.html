@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinos – Viajes Horizonte</title>
+  <meta name="description" content="Explora todos nuestros destinos: Europa, América del Norte, América del Sur, Oriente Medio, Asia, Oceanía y Mar e Islas." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .destinos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 80px 6%;
+      background: var(--azul-profundo);
+    }
+
+    .destino-block {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .destino-block:nth-child(1),
+    .destino-block:nth-child(2) {
+      aspect-ratio: auto;
+      height: 420px;
+    }
+
+    .destino-block:nth-child(1) { grid-column: span 2; }
+
+    .destino-block__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .destino-block:hover .destino-block__img { transform: scale(1.07); }
+
+    .destino-block__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.1) 55%);
+      transition: background var(--transition);
+    }
+
+    .destino-block:hover .destino-block__overlay {
+      background: linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.2) 55%);
+    }
+
+    .destino-block__content {
+      position: relative;
+      z-index: 2;
+      padding: 28px 28px 32px;
+      width: 100%;
+      transform: translateY(6px);
+      transition: transform var(--transition);
+    }
+
+    .destino-block:hover .destino-block__content { transform: translateY(0); }
+
+    .destino-block__number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--dorado);
+      margin-bottom: 6px;
+    }
+
+    .destino-block__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: var(--blanco);
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .destino-block__desc {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.7);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 340px;
+    }
+
+    .destino-block__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .destino-block:hover .destino-block__cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 1024px) {
+      .destinos-grid { grid-template-columns: 1fr 1fr; }
+      .destino-block:nth-child(1) { grid-column: span 2; }
+    }
+
+    @media (max-width: 640px) {
+      .destinos-grid { grid-template-columns: 1fr; gap: 16px; }
+      .destino-block:nth-child(1),
+      .destino-block:nth-child(2) { grid-column: auto; height: 280px; }
+      .destino-block { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <a class="navbar__logo" href="../index.html">
+      <div class="navbar__logo-icon">✦</div>
+      Viajes <span>Horizonte</span>
+    </a>
+    <button class="navbar__toggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar__menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="destinos.html" class="active">Destinos</a></li>
+      <li><a href="ofertas.html">Ofertas</a></li>
+      <li><a href="contacto.html" class="navbar__cta">Contactar</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header" style="margin-top:var(--nav-h)">
+    <div class="page-header__bg" style="background-image:url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=80')"></div>
+    <div class="page-header__overlay"></div>
+    <div class="page-header__content anim-fade-up">
+      <span class="page-header__eyebrow">El mundo entero, a tu alcance</span>
+      <h1 class="page-header__title">Nuestros<br><em>Destinos</em></h1>
+    </div>
+  </header>
+
+  <section style="padding:60px 6% 0;background:var(--azul-profundo);text-align:center;" data-anim>
+    <p style="font-size:1.05rem;color:var(--gris-suave);max-width:600px;margin:0 auto;line-height:1.8;">
+      Desde la magia de Europa hasta los paraísos insulares, pasando por la exuberancia de América
+      o la espiritualidad de Asia. Elige tu próximo horizonte.
+    </p>
+  </section>
+
+  <div class="destinos-grid">
+
+    <a href="destinos/europa.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80" alt="Europa" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">01 · Destino estrella</div>
+        <div class="destino-block__name">Europa</div>
+        <p class="destino-block__desc">Ciudades con alma, paisajes que enamoran, gastronomía inigualable. Europa es siempre una buena idea.</p>
+        <span class="destino-block__cta">Explorar Europa →</span>
+      </div>
+    </a>
+
+    <a href="destinos/america-norte.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&q=80" alt="América del Norte" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">02</div>
+        <div class="destino-block__name">América del Norte</div>
+        <p class="destino-block__desc">De los rascacielos de Nueva York a los parques nacionales. Un continente de contrastes épicos.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+    <a href="destinos/america-sur.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=80" alt="América del Sur" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">03</div>
+        <div class="destino-block__name">América del Sur</div>
+        <p class="destino-block__desc">La Patagonia, el Amazonas, Machu Picchu… Naturaleza y cultura en su expresión más pura.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+    <a href="destinos/oriente-medio.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Oriente Medio" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">04</div>
+        <div class="destino-block__name">Oriente Medio</div>
+        <p class="destino-block__desc">Desiertos dorados, mezquitas milenarias y ciudades futuristas. Un mundo que sorprende a cada paso.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+    <a href="destinos/asia.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&q=80" alt="Asia" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">05</div>
+        <div class="destino-block__name">Asia</div>
+        <p class="destino-block__desc">Tradición y modernidad conviven en un continente que nunca deja de asombrar. Japón, Tailandia, India y más.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+    <a href="destinos/oceania.html" class="destino-block" data-anim>
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" alt="Oceanía" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">06</div>
+        <div class="destino-block__name">Oceanía</div>
+        <p class="destino-block__desc">Australia, Nueva Zelanda, Fiyi… Paisajes únicos en el planeta y experiencias que duran toda la vida.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+    <a href="destinos/mar-islas.html" class="destino-block" data-anim style="grid-column: span 1;">
+      <img class="destino-block__img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Mar e Islas" loading="lazy" />
+      <div class="destino-block__overlay"></div>
+      <div class="destino-block__content">
+        <div class="destino-block__number">07</div>
+        <div class="destino-block__name">Mar e Islas</div>
+        <p class="destino-block__desc">Aguas cristalinas, arenas blancas y el horizonte solo para ti. Caribe, Maldivas, Baleares y mucho más.</p>
+        <span class="destino-block__cta">Explorar →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <section style="padding:80px 6%;background:var(--azul-marino);text-align:center;">
+    <span class="section__label">¿No encuentras lo que buscas?</span>
+    <h2 class="section__title" style="margin-bottom:20px;">Cuéntanos tu destino soñado</h2>
+    <p style="color:var(--gris-suave);max-width:480px;margin:0 auto 36px;line-height:1.8;font-size:0.95rem;">
+      Si tienes en mente un destino que no ves aquí, contáctanos. Organizamos viajes
+      a medida a cualquier rincón del mundo.
+    </p>
+    <a href="contacto.html" class="btn btn--primary">Consultar destino personalizado <span class="arrow">→</span></a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">Viajes <span>Horizonte</span></div>
+        <p class="footer__tagline">Agencia de viajes especializada en escapadas, viajes europeos y experiencias personalizadas. Desde 2018 haciendo realidad sueños de viaje.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="WhatsApp">✆</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navegación</div>
+        <ul class="footer__links">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="destinos.html">Destinos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Destinos</div>
+        <ul class="footer__links">
+          <li><a href="destinos/europa.html">Europa</a></li>
+          <li><a href="destinos/america-norte.html">América del Norte</a></li>
+          <li><a href="destinos/america-sur.html">América del Sur</a></li>
+          <li><a href="destinos/oriente-medio.html">Oriente Medio</a></li>
+          <li><a href="destinos/asia.html">Asia</a></li>
+          <li><a href="destinos/oceania.html">Oceanía</a></li>
+          <li><a href="destinos/mar-islas.html">Mar e Islas</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Contacto</div>
+        <ul class="footer__links">
+          <li><a href="tel:+34900000000">+34 900 000 000</a></li>
+          <li><a href="mailto:info@viajeshorizonte.es">info@viajeshorizonte.es</a></li>
+          <li><a href="contacto.html">Formulario de contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Viajes Horizonte · Todos los derechos reservados</span>
+      <span>Diseño web · Aviso legal · Política de privacidad</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

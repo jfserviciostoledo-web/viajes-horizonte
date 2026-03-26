@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto – Viajes Horizonte</title>
+  <meta name="description" content="Contacta con Viajes Horizonte. Nuestro equipo de expertos te asesora sin compromiso para crear el viaje de tus sueños." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/contacto.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled">
+    <a class="navbar__logo" href="../index.html">
+      <div class="navbar__logo-icon">✦</div>
+      Viajes <span>Horizonte</span>
+    </a>
+    <button class="navbar__toggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar__menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="destinos.html">Destinos</a></li>
+      <li><a href="ofertas.html">Ofertas</a></li>
+      <li><a href="contacto.html" class="active navbar__cta">Contactar</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header" style="margin-top:var(--nav-h)">
+    <div class="page-header__bg" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80')"></div>
+    <div class="page-header__overlay"></div>
+    <div class="page-header__content anim-fade-up">
+      <span class="page-header__eyebrow">Estamos aquí para ti</span>
+      <h1 class="page-header__title">Hablemos de<br><em>tu próximo viaje</em></h1>
+    </div>
+  </header>
+
+  <section class="contact-section">
+    <div class="contact-layout">
+
+      <aside class="contact-info" data-anim>
+        <span class="section__label">Información de contacto</span>
+        <h2 class="section__title" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:16px;">
+          Tu viaje empieza<br><em>con una llamada</em>
+        </h2>
+        <p class="contact-info__intro">
+          Nuestro equipo de asesores está disponible para ayudarte a planificar la escapada perfecta.
+          Consulta sin compromiso, con toda la atención que mereces.
+        </p>
+
+        <div class="contact-info__items">
+          <div class="contact-item">
+            <div class="contact-item__icon">📞</div>
+            <div>
+              <div class="contact-item__label">Teléfono</div>
+              <div class="contact-item__value"><a href="tel:+34900000000">+34 900 000 000</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">✉️</div>
+            <div>
+              <div class="contact-item__label">Email</div>
+              <div class="contact-item__value"><a href="mailto:info@viajeshorizonte.es">info@viajeshorizonte.es</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">📍</div>
+            <div>
+              <div class="contact-item__label">Dirección</div>
+              <div class="contact-item__value">Calle de los Viajeros, 14<br>28001 · Madrid, España</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">💬</div>
+            <div>
+              <div class="contact-item__label">WhatsApp</div>
+              <div class="contact-item__value"><a href="https://wa.me/34900000000" target="_blank" rel="noopener">+34 900 000 000</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info__hours">
+          <div class="contact-info__hours-title">Horario de atención</div>
+          <div class="hours-row"><span>Lunes – Viernes</span><span>9:00 – 19:00</span></div>
+          <div class="hours-row"><span>Sábado</span><span>10:00 – 14:00</span></div>
+          <div class="hours-row"><span>Domingo</span><span>Cerrado</span></div>
+        </div>
+      </aside>
+
+      <div class="contact-form-wrap" data-anim>
+        <h3 class="contact-form-wrap__title">Envíanos un mensaje</h3>
+        <p class="contact-form-wrap__subtitle">Te respondemos en menos de 24 horas.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-grid-wrap">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="apellidos">Apellidos *</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required />
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+              </div>
+              <div class="form-group form-group--full">
+                <label for="destino">¿Qué destino te interesa?</label>
+                <select id="destino" name="destino">
+                  <option value="" disabled selected>Selecciona una región</option>
+                  <option value="europa">Europa</option>
+                  <option value="america-norte">América del Norte</option>
+                  <option value="america-sur">América del Sur</option>
+                  <option value="oriente-medio">Oriente Medio</option>
+                  <option value="asia">Asia</option>
+                  <option value="oceania">Oceanía</option>
+                  <option value="mar-islas">Mar e Islas</option>
+                  <option value="otro">Otro / No lo sé todavía</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="tipo">Tipo de viaje</label>
+                <select id="tipo" name="tipo">
+                  <option value="" disabled selected>¿Quién viaja?</option>
+                  <option value="pareja">Pareja</option>
+                  <option value="familia">Familia con niños</option>
+                  <option value="amigos">Grupo de amigos</option>
+                  <option value="solo">Viajero/a solo/a</option>
+                  <option value="empresa">Viaje de empresa</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="mensaje">Cuéntanos tu idea de viaje *</label>
+                <textarea id="mensaje" name="mensaje" placeholder="¿Cuándo quieres viajar? ¿Tienes algún destino en mente? ¿Cuántos días? Cuéntanos lo que quieras…" required></textarea>
+              </div>
+              <div class="form-group form-group--full form-privacy">
+                <input type="checkbox" id="privacy" name="privacy" required />
+                <label for="privacy" style="cursor:pointer;text-transform:none;font-size:0.8rem;letter-spacing:normal;">
+                  He leído y acepto la <a href="#">Política de Privacidad</a> y el <a href="#">Aviso Legal</a>.
+                  Entiendo que mis datos se usarán para gestionar mi consulta de viaje.
+                </label>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn btn--primary">Enviar consulta <span class="arrow">→</span></button>
+                <span class="form-note">🔒 Tus datos están protegidos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-success">
+            <div class="form-success__icon">✈️</div>
+            <h3 class="form-success__title">¡Mensaje enviado!</h3>
+            <p class="form-success__text">
+              Gracias por contactar con Viajes Horizonte. Nuestro equipo revisará tu consulta
+              y te responderá en menos de 24 horas. ¡Que empiece la ilusión!
+            </p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="map-section">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48906.7!2d-3.7037!3d40.4168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación Viajes Horizonte"></iframe>
+    <div class="map-section__badge">
+      <div class="map-section__badge-title">Viajes Horizonte</div>
+      <p class="map-section__badge-addr">Calle de los Viajeros, 14<br>28001 · Madrid, España</p>
+      <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn--outline" style="padding:10px 20px;font-size:0.75rem;">Ver en Google Maps</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">Viajes <span>Horizonte</span></div>
+        <p class="footer__tagline">Agencia de viajes especializada en escapadas, viajes europeos y experiencias personalizadas. Desde 2018 haciendo realidad sueños de viaje.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="WhatsApp">✆</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navegación</div>
+        <ul class="footer__links">
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="destinos.html">Destinos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Destinos</div>
+        <ul class="footer__links">
+          <li><a href="destinos/europa.html">Europa</a></li>
+          <li><a href="destinos/america-norte.html">América del Norte</a></li>
+          <li><a href="destinos/america-sur.html">América del Sur</a></li>
+          <li><a href="destinos/oriente-medio.html">Oriente Medio</a></li>
+          <li><a href="destinos/asia.html">Asia</a></li>
+          <li><a href="destinos/oceania.html">Oceanía</a></li>
+          <li><a href="destinos/mar-islas.html">Mar e Islas</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Contacto</div>
+        <ul class="footer__links">
+          <li><a href="tel:+34900000000">+34 900 000 000</a></li>
+          <li><a href="mailto:info@viajeshorizonte.es">info@viajeshorizonte.es</a></li>
+          <li><a href="contacto.html">Formulario de contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Viajes Horizonte · Todos los derechos reservados</span>
+      <span>Diseño web · Aviso legal · Política de privacidad</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/contacto.js"></script>
+</body>
+</html>
